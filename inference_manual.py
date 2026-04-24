@@ -26,6 +26,8 @@ def load_model():
     with open(map_path, 'r', encoding='utf-8') as f:
         item_map = json.load(f)
         
+    # item_map['idx_to_appid'] chứa {appid: idx}
+    # item_map['appid_to_idx'] chứa {idx: appid}
     return i_factors, i_biases, item_map['idx_to_appid'], item_map['appid_to_idx']
 
 def load_game_database():
@@ -97,7 +99,7 @@ def recommend(u_factor, i_factors, i_biases, played_indices, idx_to_appid, appid
 def main():
     # 1. Load data
     try:
-        i_factors, i_biases, idx_to_appid_map, appid_to_idx = load_model()
+        i_factors, i_biases, map_appid_to_idx, map_idx_to_appid = load_model()
         appid_to_title, title_to_appid = load_game_database()
     except Exception as e:
         print(f"Lỗi: {e}")
@@ -135,14 +137,16 @@ def main():
         return
 
     # 2. Folding-in
-    u_factor, played_indices = fold_in_user(selected_appids, i_factors, i_biases, appid_to_idx)
+    # Giảm epochs xuống 100 cho nhanh và tránh overfit khi học 1 user, 
+    # vẫn dùng LR và Reg từ Optuna của bạn.
+    u_factor, played_indices = fold_in_user(selected_appids, i_factors, i_biases, map_appid_to_idx, epochs=100)
     
     if u_factor is None:
         print("Lỗi khi tính toán sở thích.")
         return
 
     # 3. Recommend
-    recommend(u_factor, i_factors, i_biases, played_indices, idx_to_appid_map, appid_to_title)
+    recommend(u_factor, i_factors, i_biases, played_indices, map_idx_to_appid, appid_to_title)
 
 if __name__ == '__main__':
     main()
