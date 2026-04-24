@@ -12,9 +12,9 @@ st.set_page_config(
     layout="wide"
 )
 
-# Đường dẫn file
-MODEL_DIR = r'C:\Users\Lenovo\PycharmProjects\ShopeeRanking\model_weights'
-METADATA_FILE = r'C:\Users\Lenovo\PycharmProjects\ShopeeRanking\data\games_lite.csv'
+# Đường dẫn file (Dùng relative path để chạy được trên GitHub/Streamlit Cloud)
+MODEL_DIR = 'model_weights'
+METADATA_FILE = os.path.join('data', 'games_lite.csv')
 
 # 1. Hàm tải Model (Cần Cache để không load lại mỗi lần nhấn nút)
 @st.cache_resource
