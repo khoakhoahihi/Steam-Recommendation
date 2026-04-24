@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDEs
+.idea/
+.vscode/
+
+# Data & Models (Exclude large files)
+data/*.csv
+!data/games_lite.csv
+model_weights/*.npy
+model_weights/mappings.pkl
+results/
+
+# Cython generated files
+models/*.cpp
+models/*.pyd
+model.c
+model.cpp
+model.cp313-win_amd64.pyd

@@ -1,0 +1,8 @@
+streamlit
+numpy
+pandas
+scipy
+cython
+optuna
+tqdm
+scikit-learn
