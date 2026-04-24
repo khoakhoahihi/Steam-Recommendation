@@ -50,7 +50,6 @@ The VEBPR model achieved an **NDCG@10 of 0.0311**, significantly outperforming s
 
 ##  Credits
 *   **Developer:** Dang Khoa
-*   **AI Pair Programmer:** Antigravity (Google DeepMind)
 *   **Dataset:** Steam 200k & Games Metadata
 
 ---
